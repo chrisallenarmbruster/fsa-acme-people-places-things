@@ -13,7 +13,7 @@ const data = {
 
 async function syncAndSeed() {
   try {
-    await dbModelSync({ force: true })
+    await dbModelSync()
     console.log("starting seed process")
     await Promise.all(
       data.people.map(async (person) => await Person.create({ name: person }))

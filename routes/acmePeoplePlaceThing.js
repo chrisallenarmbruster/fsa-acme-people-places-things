@@ -1,6 +1,5 @@
 const router = require("express").Router()
-// const { db, Person, Thing, Place, Souvenir } = require("../db/model.js")
-const { db, Person, Thing, Place, Souvenir } = require("../db")
+const { Person, Thing, Place, Souvenir } = require("../db")
 const { mainView } = require("../views")
 
 router.get("/", async (req, res, next) => {
@@ -28,7 +27,7 @@ router.post("/", async (req, res, next) => {
     res.redirect("/")
     // res.json(req.body)
   } catch (error) {
-    error.message = "database query failed on GET / route"
+    error.message = "database query failed on POST / route"
     next(error)
   }
 })
@@ -42,7 +41,7 @@ router.delete("/:id", async (req, res, next) => {
     res.redirect("/")
     // res.json(req.body)
   } catch (error) {
-    error.message = "database query failed on GET / route"
+    error.message = "database query failed on DELETE / route"
     next(error)
   }
 })
