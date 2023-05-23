@@ -1,6 +1,6 @@
 //if there is an index.js file at this path, it will use it by default.
 //exporting STRING, INTEGER with db from other file so we don't need to require sequelize again
-const { db, STRING, INTEGER } = require("./")
+const { db, STRING, INTEGER } = require("./db.js")
 
 //define models
 const Person = db.define("Person", {
@@ -42,7 +42,7 @@ Souvenir.belongsTo(Thing)
 
 async function dbModelSync() {
   await db.sync({ force: true })
-  console.log("All models were synchronized successfully.")
+  console.log("all models were synchronized successfully.")
 }
 
 module.exports = { db, Person, Thing, Place, Souvenir, dbModelSync } //don't forget to export your models

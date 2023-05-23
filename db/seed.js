@@ -1,4 +1,4 @@
-const { db, Person, Thing, Place, Souvenir } = require("./model.js") //don't forget to import the models
+const { db, Person, Thing, Place, Souvenir, dbModelSync } = require("./") //don't forget to import the models
 
 const data = {
   people: ["moe", "larry", "lucy", "ethyl"],
@@ -13,7 +13,7 @@ const data = {
 
 async function syncAndSeed() {
   try {
-    await db.sync({ force: true })
+    await dbModelSync({ force: true })
     console.log("starting seed process")
     await Promise.all(
       data.people.map(async (person) => await Person.create({ name: person }))
