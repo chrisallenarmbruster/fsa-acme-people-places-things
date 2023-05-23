@@ -1,4 +1,4 @@
-const { Sequelize } = require("sequelize")
+const { Sequelize, STRING, INTEGER } = require("sequelize")
 
 const db = new Sequelize(`postgres://localhost/acme_people_places_things`, {
   logging: false,
@@ -16,4 +16,4 @@ async function authenticate() {
 
 authenticate()
 
-module.exports = db
+module.exports = { db, STRING, INTEGER }
