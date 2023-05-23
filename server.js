@@ -1,6 +1,7 @@
 const express = require("express")
 const morgan = require("morgan")
 const override = require("method-override")
+const mainView = require("./views/mainView.js")
 
 //require router(s)
 //const routes = require("./routes")
@@ -19,6 +20,10 @@ app.use(override("_method"))
 // app.use("/", (req, res, next) => {
 //   res.redirect("/????")
 // })
+
+app.get("/", (req, res) => {
+  res.send(mainView(""))
+})
 
 const PORT = 1337
 

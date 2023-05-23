@@ -3,12 +3,46 @@
 const { db, STRING, INTEGER } = require("./")
 
 //define models
+const Person = db.define("Person", {
+  name: {
+    type: STRING,
+    allowNull: false,
+    unique: true,
+    validate: { notEmpty: true },
+  },
+})
+
+const Thing = db.define("Thing", {
+  name: {
+    type: STRING,
+    allowNull: false,
+    unique: true,
+    validate: { notEmpty: true },
+  },
+})
+
+const Place = db.define("Place", {
+  name: {
+    type: STRING,
+    allowNull: false,
+    unique: true,
+    validate: { notEmpty: true },
+  },
+})
+
+const Souvenir = db.define("Souvenir", {})
 
 //define relationships
+Person.hasMany(Souvenir)
+Souvenir.belongsTo(Person)
+Place.hasMany(Souvenir)
+Souvenir.belongsTo(Place)
+Thing.hasMany(Souvenir)
+Souvenir.belongsTo(Thing)
 
 async function dbModelSync() {
   await db.sync({ force: true })
   console.log("All models were synchronized successfully.")
 }
 
-module.exports = { db, dbModelSync } //don't forget to export your models
+module.exports = { db, Person, Thing, Place, Souvenir, dbModelSync } //don't forget to export your models
